@@ -301,11 +301,11 @@ class RayPPOTrainer:
         self.use_prefix_grouper = self.config.actor_rollout_ref.actor.get("use_prefix_grouper", False)
         self.use_legacy_worker_impl = config.trainer.get("use_legacy_worker_impl", "auto")
 
-        self._create_dataloader(train_dataset, val_dataset, collate_fn, train_sampler)
+        self._create_dataloader()
 
         self.checkpoint_manager = None
 
-    def _create_dataloader(self, train_dataset, val_dataset, collate_fn, train_sampler: Optional[Sampler]):
+    def _create_dataloader(self, train_dataset=None, val_dataset=None, collate_fn=None, train_sampler: Optional[Sampler]=None):
         """
         Creates the train and validation dataloaders.
         """
